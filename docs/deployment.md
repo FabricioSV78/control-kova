@@ -24,7 +24,7 @@
 
 5. Despliega. Cada rama o pull request obtiene una URL de vista previa.
 
-Cloudflare detectará Node 22 mediante `.nvmrc`. El build se detendrá con un mensaje claro si falta la configuración de Supabase o si el modo demo está habilitado accidentalmente en Pages.
+Cloudflare detectará Node 22 mediante `.nvmrc`. Si faltan las variables de Supabase, la aplicación mostrará un aviso de configuración en lugar de habilitar accidentalmente el modo demo.
 
 `public/_redirects` genera la regla `/* /index.html 200`, necesaria para que una recarga directa de `/ventas` o `/reportes` vuelva al router de React en vez de responder 404.
 
