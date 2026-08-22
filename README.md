@@ -6,7 +6,6 @@ Aplicación responsive para administrar pedidos de pulseras con medida de muñec
 
 ```bash
 npm install
-copy .env.example .env.local
 npm run dev
 ```
 
@@ -26,7 +25,7 @@ Los cambios demo permanecen en el navegador y pueden restablecerse desde Configu
 2. Ejecuta en orden los archivos de [supabase/migrations](./supabase/migrations).
 3. Desactiva el registro público en Authentication > Providers > Email.
 4. Crea manualmente a Fabricio y Daniela.
-5. Copia `.env.example` como `.env.local` y configura:
+5. Crea un archivo local llamado `.env.local` y configura:
 
 ```env
 VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
