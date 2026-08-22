@@ -48,7 +48,7 @@ npm run preview    # vista previa de dist
 
 ## Despliegue en Cloudflare Pages
 
-La SPA ya incluye `_redirects` para React Router, cabeceras defensivas y `wrangler.jsonc`.
+La SPA ya incluye `_redirects` para React Router y cabeceras defensivas compatibles con Pages. La configuración de producción se administra desde el panel de Cloudflare para que las variables de build no sean sustituidas por archivos del repositorio.
 
 En Cloudflare Pages configura:
 
