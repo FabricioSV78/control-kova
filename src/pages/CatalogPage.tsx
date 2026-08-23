@@ -94,7 +94,10 @@ export function CatalogPage() {
 
     <main>
       <section className="relative min-h-[680px] overflow-hidden bg-black sm:min-h-[760px] lg:min-h-[820px]">
-        <img src="/assets/kova-portada.webp?v=2026082303" alt="Colección de accesorios KOVA" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[52%_center]" />
+        <picture className="absolute inset-0 block">
+          <source media="(max-width: 767px)" srcSet="/assets/kova-portada-mobile.webp?v=2026082301" type="image/webp" />
+          <img src="/assets/kova-portada.webp?v=2026082303" alt="Colección de accesorios KOVA" fetchPriority="high" className="h-full w-full translate-y-[55px] scale-[0.82] object-contain sm:translate-y-[70px] sm:scale-90 md:translate-y-0 md:scale-100 md:object-cover md:object-[52%_center]" />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-black/15" />
         <div className="relative mx-auto flex min-h-[680px] max-w-[1480px] items-end px-5 pb-10 sm:min-h-[760px] sm:px-8 sm:pb-14 lg:min-h-[820px] lg:px-12">
           <div className="flex w-full justify-center text-white sm:justify-end">

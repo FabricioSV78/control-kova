@@ -76,6 +76,11 @@ await Promise.all([
     height: 1200,
     quality: 84,
   }),
+  optimizeAsset('kova-portada-mobile.png', 'kova-portada-mobile.webp', {
+    width: 1080,
+    height: 1920,
+    quality: 84,
+  }),
 ])
 
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')
