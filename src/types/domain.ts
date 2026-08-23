@@ -10,6 +10,7 @@ export interface Business {
   id: UUID
   name: string
   slug: string
+  whatsappNumber: string | null
 }
 
 export interface BusinessMember {
@@ -37,14 +38,33 @@ export interface Product {
   id: UUID
   businessId: UUID
   name: string
+  description: string | null
   sku: string | null
   category: string
   salePrice: number
   estimatedCost: number
   status: ProductStatus
-  imageUrl: string | null
+  sortOrder: number
+  images: ProductImage[]
+  outfitImages: ProductImage[]
   createdAt: ISOTimestamp
   updatedAt: ISOTimestamp
+}
+
+export interface ProductImage {
+  id: UUID
+  url: string
+  storagePath: string | null
+  sortOrder: number
+}
+
+export interface DeliveryShowcase {
+  id: UUID
+  businessId: UUID
+  title: string
+  imageUrl: string
+  storagePath: string | null
+  createdAt: ISOTimestamp
 }
 
 export interface SaleItem {
@@ -118,9 +138,15 @@ export interface WorkspaceData {
   categories: ExpenseCategory[]
   paymentMethods: PaymentMethod[]
   products: Product[]
+  deliveries: DeliveryShowcase[]
   sales: Sale[]
   expenses: Expense[]
   activities: ActivityEntry[]
+}
+
+export interface DeliveryShowcaseInput {
+  title: string
+  image: File
 }
 
 export interface SaleItemInput {
@@ -156,9 +182,9 @@ export interface ExpenseInput {
 
 export interface ProductInput {
   name: string
+  description?: string
   sku?: string
   category: string
   salePrice: number
   estimatedCost: number
-  imageUrl?: string
 }

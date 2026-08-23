@@ -31,7 +31,7 @@ export function LoginPage() {
     <main className="grid min-h-screen bg-stone-950 lg:grid-cols-[1.1fr_0.9fr]">
       <section className="relative hidden overflow-hidden p-12 lg:flex lg:flex-col lg:justify-between xl:p-16">
         <div className="absolute -left-24 top-1/4 size-96 rounded-full bg-stone-800/40 blur-3xl" />
-        <div className="relative flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-white font-display text-xl font-black text-stone-950">K</span><div><p className="font-display text-xl font-extrabold text-white">KOVA</p><p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">Control</p></div></div>
+        <div className="relative flex items-center gap-3"><img src="/assets/kova-logo.png?v=2026082302" alt="KOVA" className="size-11 object-contain" /><div><p className="font-display text-xl font-extrabold text-white">KOVA</p><p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">Control</p></div></div>
         <div className="relative max-w-xl">
           <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-stone-500">Finanzas claras. Decisiones simples.</p>
           <h1 className="font-display text-5xl font-extrabold leading-[1.08] tracking-[-0.04em] text-white xl:text-6xl">Todo KOVA,<br />en un solo lugar.</h1>
@@ -41,7 +41,7 @@ export function LoginPage() {
       </section>
       <section className="flex min-h-screen items-center justify-center bg-kova-50 px-5 py-10 sm:px-10">
         <div className="w-full max-w-md">
-          <div className="mb-9 flex items-center gap-3 lg:hidden"><span className="grid size-10 place-items-center rounded-xl bg-stone-950 font-display text-lg font-black text-white">K</span><div><p className="font-display font-extrabold">KOVA</p><p className="text-[9px] font-bold uppercase tracking-[0.25em] text-stone-400">Control</p></div></div>
+          <div className="mb-9 flex items-center gap-3 lg:hidden"><img src="/assets/kova-logo.png?v=2026082302" alt="KOVA" className="size-10 object-contain" /><div><p className="font-display font-extrabold">KOVA</p><p className="text-[9px] font-bold uppercase tracking-[0.25em] text-stone-400">Control</p></div></div>
           <div className="mb-7">
             <div className="mb-4 grid size-11 place-items-center rounded-2xl border border-stone-200 bg-white"><LockKeyhole className="size-5" /></div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight">Bienvenido</h2>
@@ -62,6 +62,7 @@ export function LoginPage() {
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">Configura las variables de Supabase para iniciar sesión.</div>
           )}
           <p className="mt-7 text-center text-xs leading-5 text-stone-400">El registro público está deshabilitado.<br />Solo Fabricio y Daniela pueden acceder.</p>
+          <a href="/catalogo" className="mt-5 block text-center text-xs font-bold text-stone-600 underline decoration-stone-300 underline-offset-4 hover:text-stone-950">Ir al catálogo público</a>
         </div>
       </section>
     </main>

@@ -26,7 +26,13 @@
 
 Cloudflare detectará Node 22 mediante `.nvmrc`. Si faltan las variables de Supabase, la aplicación mostrará un aviso de configuración en lugar de habilitar accidentalmente el modo demo.
 
-`public/_redirects` genera la regla `/* /index.html 200`, necesaria para que una recarga directa de `/ventas` o `/reportes` vuelva al router de React en vez de responder 404.
+`public/_redirects` genera la regla `/* /index.html 200`, necesaria para que una recarga directa de `/ventas`, `/reportes` o `/catalogo` vuelva al router de React en vez de responder 404.
+
+El enlace que se comparte con clientes es `https://TU-DOMINIO/catalogo`. No requiere iniciar sesión. Antes de promocionarlo, configura el número de WhatsApp y publica al menos un producto activo desde KOVA Control.
+
+Las imágenes del catálogo se incluyen en el despliegue desde `public/productos/catalogo/`. Las carpetas normales contienen producto y las carpetas `Outfit-<Producto>` contienen combinaciones. Cuando cambies una foto, realiza un nuevo commit y despliegue. El build genera rutas versionadas y Cloudflare aplica caché prolongada a los formatos de imagen.
+
+Las fotos de entregas no requieren un nuevo despliegue: se publican desde **Entregas** en KOVA Control y se almacenan en Supabase. Aplica antes la migración `202608220007_delivery_showcase.sql`.
 
 ## Supabase Auth
 

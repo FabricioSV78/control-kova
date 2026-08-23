@@ -14,7 +14,7 @@ export interface Database {
         id: string; full_name: string; avatar_url: string | null; created_at: string; updated_at: string
       }>
       businesses: Table<{
-        id: string; name: string; slug: string; currency: string; timezone: string; created_by: string; created_at: string; updated_at: string
+        id: string; name: string; slug: string; currency: string; timezone: string; whatsapp_number: string | null; created_by: string; created_at: string; updated_at: string
       }>
       business_members: Table<{
         business_id: string; profile_id: string; role: Database['public']['Enums']['member_role']; display_name: string; created_at: string; created_by: string | null
@@ -26,8 +26,16 @@ export interface Database {
         id: string; business_id: string; name: string; is_active: boolean; sort_order: number; created_by: string; created_at: string; updated_at: string
       }>
       products: Table<
-        { id: string; business_id: string; name: string; sku: string | null; category: string; sale_price: number; estimated_cost: number; status: Database['public']['Enums']['product_status']; image_url: string | null; created_by: string; created_at: string; updated_at: string },
-        { id?: string; business_id: string; name: string; sku?: string | null; category: string; sale_price: number; estimated_cost?: number; status?: Database['public']['Enums']['product_status']; image_url?: string | null; created_by: string; created_at?: string; updated_at?: string }
+        { id: string; business_id: string; name: string; description: string | null; sku: string | null; category: string; sale_price: number; estimated_cost: number; status: Database['public']['Enums']['product_status']; sort_order: number; image_url: string | null; created_by: string; created_at: string; updated_at: string },
+        { id?: string; business_id: string; name: string; description?: string | null; sku?: string | null; category: string; sale_price: number; estimated_cost?: number; status?: Database['public']['Enums']['product_status']; sort_order?: number; image_url?: string | null; created_by: string; created_at?: string; updated_at?: string }
+      >
+      product_images: Table<
+        { id: string; business_id: string; product_id: string; image_url: string; storage_path: string | null; sort_order: number; created_by: string; created_at: string },
+        { id?: string; business_id: string; product_id: string; image_url: string; storage_path?: string | null; sort_order: number; created_by: string; created_at?: string }
+      >
+      delivery_showcase: Table<
+        { id: string; business_id: string; title: string; image_url: string; storage_path: string | null; created_by: string; created_at: string; updated_at: string },
+        { id?: string; business_id: string; title: string; image_url: string; storage_path?: string | null; created_by: string; created_at?: string; updated_at?: string }
       >
       sales: Table<{
         id: string; business_id: string; sale_number: number; sold_at: string; payment_method_id: string | null; payment_method_name: string; customer_name: string | null; notes: string | null; total: number; status: Database['public']['Enums']['record_status']; created_by: string; created_at: string; updated_at: string; voided_at: string | null; voided_by: string | null
@@ -58,6 +66,8 @@ export interface Database {
       create_expense: { Args: { p_business_id: string; p_spent_at: string; p_category_id: string | null; p_category_name: string; p_concept: string; p_quantity: number; p_unit_price: number; p_paid_by: Database['public']['Enums']['expense_payer']; p_notes: string; p_contributions?: Json }; Returns: string }
       update_expense: { Args: { p_expense_id: string; p_spent_at: string; p_category_id: string | null; p_category_name: string; p_concept: string; p_quantity: number; p_unit_price: number; p_paid_by: Database['public']['Enums']['expense_payer']; p_notes: string; p_contributions?: Json }; Returns: string }
       void_expense: { Args: { p_expense_id: string }; Returns: undefined }
+      get_public_catalog: { Args: { p_slug?: string }; Returns: Json }
+      reorder_products: { Args: { p_business_id: string; p_product_ids: string[] }; Returns: undefined }
     }
     Enums: {
       member_role: 'owner' | 'admin' | 'member'

@@ -29,9 +29,12 @@ function buildProducts(now: string): Product[] {
   const base = {
     businessId: DEMO_BUSINESS_ID,
     category: 'Pulseras',
+    description: 'Pulsera artesanal KOVA elaborada a la medida de tu muñeca.',
     estimatedCost: 11,
     status: 'active' as const,
-    imageUrl: null,
+    sortOrder: 0,
+    images: [],
+    outfitImages: [],
     createdAt: now,
     updatedAt: now,
   }
@@ -41,7 +44,7 @@ function buildProducts(now: string): Product[] {
     { ...base, id: productIds.eclipse, name: 'KOVA Eclipse', sku: 'KOV-ECL-01', salePrice: 31 },
     { ...base, id: productIds.polar, name: 'KOVA Polar Core', sku: 'KOV-POL-01', salePrice: 31 },
     { ...base, id: productIds.void, name: 'KOVA Void Line', sku: 'KOV-VOI-01', salePrice: 33 },
-    { ...base, id: productIds.noctis, name: 'KOVA Noctis 45', sku: 'KOV-NOC-45', salePrice: 33 },
+    { ...base, id: productIds.noctis, name: 'KOVA Noctis 45', sku: 'KOV-NOC-45', category: 'Collares', description: 'Collar artesanal KOVA elaborado a pedido.', salePrice: 33 },
   ]
 }
 
@@ -108,7 +111,7 @@ export function createDemoData(): WorkspaceData {
   const sales = buildSales(now)
   const expenses = buildExpenses(now)
   return {
-    business: { id: DEMO_BUSINESS_ID, name: 'KOVA', slug: 'kova' },
+    business: { id: DEMO_BUSINESS_ID, name: 'KOVA', slug: 'kova', whatsappNumber: null },
     members: [
       { profileId: DEMO_USER_ID, displayName: 'Fabricio', role: 'owner' },
       { profileId: '20000000-0000-4000-8000-000000000002', displayName: 'Daniela', role: 'admin' },
@@ -121,7 +124,7 @@ export function createDemoData(): WorkspaceData {
       id: `70000000-0000-4000-8000-${String(index + 1).padStart(12, '0')}`,
       businessId: DEMO_BUSINESS_ID, name, isActive: true,
     })),
-    products, sales, expenses,
+    products, deliveries: [], sales, expenses,
     activities: buildActivities(sales, expenses),
   }
 }

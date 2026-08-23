@@ -1,8 +1,11 @@
 import { createDemoData, DEMO_USER_ID } from './demoData'
+import { attachLocalProductImages, loadProductImageManifest } from './productImages'
 import { roundMoney } from '../utils/format'
+import { fileToDataUrl, optimizeDeliveryImage } from '../utils/imageUpload'
 import type { KovaService } from './contracts'
 import type {
   ActivityEntry,
+  DeliveryShowcaseInput,
   ExpenseContribution,
   ExpenseInput,
   ProductInput,
@@ -16,7 +19,6 @@ const IMPORTS_KEY = 'kova-control-demo-imports-v2'
 
 const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T
 const newId = () => crypto.randomUUID()
-
 function readData(): WorkspaceData {
   const stored = localStorage.getItem(STORAGE_KEY)
   if (!stored) {
@@ -72,7 +74,11 @@ function validateSaleItems(data: WorkspaceData, input: SaleInput): void {
 
 export class DemoKovaService implements KovaService {
   async loadWorkspace(): Promise<WorkspaceData> {
-    return clone(readData())
+    const data = clone(readData())
+    data.deliveries ??= []
+    data.products = data.products.map((product, index) => ({ ...product, sortOrder: product.sortOrder ?? index })).sort((a, b) => a.sortOrder - b.sortOrder)
+    data.products = attachLocalProductImages(data.products, await loadProductImageManifest())
+    return data
   }
 
   async createWorkspace(): Promise<void> {
@@ -178,7 +184,8 @@ export class DemoKovaService implements KovaService {
     const data = readData()
     const now = new Date().toISOString()
     const id = newId()
-    data.products.unshift({ id, businessId: data.business.id, name: input.name.trim(), sku: input.sku?.trim() || null, category: input.category, salePrice: input.salePrice, estimatedCost: input.estimatedCost, status: 'active', imageUrl: input.imageUrl?.trim() || null, createdAt: now, updatedAt: now })
+    const firstOrder = Math.min(0, ...data.products.map((product) => product.sortOrder ?? 0))
+    data.products.unshift({ id, businessId: data.business.id, name: input.name.trim(), description: input.description?.trim() || null, sku: input.sku?.trim() || null, category: input.category, salePrice: input.salePrice, estimatedCost: input.estimatedCost, status: 'active', sortOrder: firstOrder - 1, images: [], outfitImages: [], createdAt: now, updatedAt: now })
     addActivity(data, { type: 'product', action: 'created', entityId: id, title: 'Producto creado', description: input.name, amount: null })
     writeData(data)
   }
@@ -187,7 +194,7 @@ export class DemoKovaService implements KovaService {
     const data = readData()
     const product = data.products.find((candidate) => candidate.id === id)
     if (!product) throw new Error('Producto no encontrado.')
-    Object.assign(product, { name: input.name.trim(), sku: input.sku?.trim() || null, category: input.category, salePrice: input.salePrice, estimatedCost: input.estimatedCost, imageUrl: input.imageUrl?.trim() || null, updatedAt: new Date().toISOString() })
+    Object.assign(product, { name: input.name.trim(), description: input.description?.trim() || null, sku: input.sku?.trim() || null, category: input.category, salePrice: input.salePrice, estimatedCost: input.estimatedCost, images: [], outfitImages: [], updatedAt: new Date().toISOString() })
     addActivity(data, { type: 'product', action: 'updated', entityId: id, title: 'Producto actualizado', description: product.name, amount: null })
     writeData(data)
   }
@@ -198,6 +205,45 @@ export class DemoKovaService implements KovaService {
     if (!product) throw new Error('Producto no encontrado.')
     product.status = 'inactive'
     addActivity(data, { type: 'product', action: 'deactivated', entityId: id, title: 'Producto desactivado', description: product.name, amount: null })
+    writeData(data)
+  }
+
+  async activateProduct(id: UUID): Promise<void> {
+    const data = readData()
+    const product = data.products.find((candidate) => candidate.id === id)
+    if (!product) throw new Error('Producto no encontrado.')
+    product.status = 'active'
+    addActivity(data, { type: 'product', action: 'updated', entityId: id, title: 'Producto activado', description: product.name, amount: null })
+    writeData(data)
+  }
+
+  async reorderProducts(ids: UUID[]): Promise<void> {
+    const data = readData()
+    const orderById = new Map(ids.map((id, index) => [id, index]))
+    data.products.forEach((product) => {
+      const nextOrder = orderById.get(product.id)
+      if (nextOrder !== undefined) product.sortOrder = nextOrder
+    })
+    writeData(data)
+  }
+
+  async createDeliveryShowcase(input: DeliveryShowcaseInput): Promise<void> {
+    const data = readData()
+    const image = await optimizeDeliveryImage(input.image)
+    data.deliveries ??= []
+    data.deliveries.unshift({ id: newId(), businessId: data.business.id, title: input.title.trim(), imageUrl: await fileToDataUrl(image), storagePath: null, createdAt: new Date().toISOString() })
+    writeData(data)
+  }
+
+  async deleteDeliveryShowcase(id: UUID): Promise<void> {
+    const data = readData()
+    data.deliveries = (data.deliveries ?? []).filter((delivery) => delivery.id !== id)
+    writeData(data)
+  }
+
+  async updateBusinessContact(whatsappNumber: string): Promise<void> {
+    const data = readData()
+    data.business.whatsappNumber = whatsappNumber
     writeData(data)
   }
 

@@ -1,4 +1,5 @@
 import type {
+  DeliveryShowcaseInput,
   ExpenseInput,
   ProductInput,
   SaleInput,
@@ -18,6 +19,11 @@ export interface KovaService {
   createProduct(input: ProductInput): Promise<void>
   updateProduct(id: UUID, input: ProductInput): Promise<void>
   deactivateProduct(id: UUID): Promise<void>
+  activateProduct(id: UUID): Promise<void>
+  reorderProducts(ids: UUID[]): Promise<void>
+  createDeliveryShowcase(input: DeliveryShowcaseInput): Promise<void>
+  deleteDeliveryShowcase(id: UUID): Promise<void>
+  updateBusinessContact(whatsappNumber: string): Promise<void>
   hasImportBatch(type: 'sales' | 'expenses', hash: string): Promise<boolean>
   saveImportBatch(type: 'sales' | 'expenses', fileName: string, hash: string, rowCount: number): Promise<void>
   resetDemo?(): Promise<void>

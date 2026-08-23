@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "catalog:images": "node scripts/generate-product-images-manifest.mjs",
+    "predev": "npm run catalog:images",
     "dev": "vite",
+    "prebuild": "npm run catalog:images",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint .",

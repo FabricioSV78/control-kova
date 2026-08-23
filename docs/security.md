@@ -7,6 +7,7 @@ Las migraciones habilitan RLS en todas las tablas públicas. La función auxilia
 - **profiles:** cada usuario edita únicamente su perfil y puede ver a quienes comparten workspace para mostrar autores.
 - **businesses / business_members:** cualquier integrante puede ver KOVA; solo `owner` o `admin` mantiene el workspace y sus miembros. Nadie puede retirarse a sí mismo accidentalmente mediante la política de borrado.
 - **products / catálogos:** los miembros pueden leer y mantener productos, categorías y medios de pago. El `with check` impide mover filas a un negocio ajeno.
+- **catálogo público:** `anon` no recibe acceso `select` a `products` ni a `delivery_showcase`. La RPC `get_public_catalog` devuelve una proyección limitada de productos activos y entregas publicadas. Las imágenes de producto son archivos del despliegue; las entregas usan un bucket público cuyo alta y borrado requieren membresía de KOVA.
 - **sales, sale_items, expenses, contributions y activity_log:** poseen política de lectura para miembros, pero no políticas directas de escritura. Solo las RPC transaccionales pueden modificarlas.
 - **import_batches:** los miembros ven lotes y solo insertan lotes atribuidos a su propio `auth.uid()`.
 

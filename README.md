@@ -1,6 +1,6 @@
 # KOVA Control
 
-Aplicación responsive para administrar pedidos de pulseras con medida de muñeca, ventas, gastos, aportes de socios, productos, historial y reportes de KOVA.
+Aplicación responsive para administrar pedidos de pulseras con medida de muñeca, ventas, gastos, aportes de socios, productos, historial y reportes de KOVA. Incluye un catálogo público conectado a los productos del panel.
 
 ## Inicio rápido
 
@@ -34,6 +34,38 @@ VITE_ENABLE_DEMO_MODE=false
 ```
 
 Nunca agregues una `SUPABASE_SERVICE_ROLE_KEY` a este proyecto. Las instrucciones para crear el workspace y asociar a Daniela están en [supabase/README.md](./supabase/README.md).
+
+## Catálogo público
+
+El catálogo vive en `/catalogo`. Solo muestra productos activos y permite:
+
+- ordenar los modelos arrastrando sus tarjetas desde **Productos**;
+- publicar galerías cuadradas de producto y colecciones de outfits;
+- mostrar una galería 3:4 de pedidos enviados o entregados;
+- buscar y filtrar modelos por categoría;
+- registrar nombre, ciudad de Perú y medida de muñeca;
+- abrir WhatsApp con toda la información del pedido ya escrita.
+
+La sección **Entregas** del panel permite subir estas fotos y su texto sin modificar el repositorio. Las imágenes se optimizan a WebP y se guardan en Supabase Storage.
+
+El número receptor se configura dentro de **Configuración > Catálogo y WhatsApp**. Debe incluir el código de país y escribirse solo con dígitos, por ejemplo `51987654321`.
+
+### Imágenes de productos
+
+Las fotos se sirven desde Cloudflare Pages, no desde Supabase Storage. El vínculo se realiza mediante el nombre del producto:
+
+```text
+public/productos/catalogo/Kova Alba/1.png
+public/productos/catalogo/Kova Alba/2.png
+public/productos/catalogo/Outfit-Kova Alba/1.png
+```
+
+1. El nombre de la carpeta debe coincidir con el producto de KOVA Control.
+2. Usa el prefijo `Outfit-` para las imágenes de combinaciones.
+3. Agrega imágenes `1:1` numeradas desde `1` en adelante.
+4. Sube los archivos al repositorio y vuelve a desplegar.
+
+`npm run dev` y `npm run build` generan automáticamente `public/productos/manifest.json`. Como Cloudflare Pages es un despliegue estático, las fotos no pueden escribirse en esa carpeta desde el navegador publicado.
 
 ## Comandos
 

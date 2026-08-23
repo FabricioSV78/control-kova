@@ -9,3 +9,24 @@
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/kova-logo.png
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/productos/manifest.json
+  Cache-Control: no-cache
+
+/productos/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/productos/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/productos/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/productos/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/productos/*.webp
+  Cache-Control: public, max-age=31536000, immutable
