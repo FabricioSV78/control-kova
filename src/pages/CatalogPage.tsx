@@ -23,7 +23,8 @@ const FAQ_ITEMS = [
   { question: '¿Cuánto demora la preparación?', answer: 'Cada pieza se realiza a pedido. Te confirmaremos el tiempo estimado según el modelo y el destino antes de finalizar la compra.' },
 ]
 
-const DESKTOP_NAV_ITEM_CLASS = 'inline-flex h-10 items-center justify-center rounded-full px-4 text-[9px] font-bold uppercase leading-none tracking-[0.18em] transition'
+const DESKTOP_NAV_ITEM_CLASS = 'inline-flex h-10 w-[92px] flex-none items-center justify-center rounded-full px-2 text-center font-display text-[9px] font-bold uppercase leading-none tracking-[0.14em] antialiased transition'
+const DESKTOP_NAV_LABEL_CLASS = 'whitespace-nowrap'
 
 export function CatalogPage() {
   const [catalog, setCatalog] = useState<CatalogData | null>(null)
@@ -71,15 +72,15 @@ export function CatalogPage() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-3 text-white sm:px-6 sm:pt-5">
       <div className="relative mx-auto flex max-w-[1480px] items-center justify-between gap-3">
         <a href="/catalogo" className="pointer-events-auto flex items-center gap-2.5 rounded-full border border-white/15 bg-black/70 p-1.5 pr-4 shadow-xl shadow-black/15 backdrop-blur-xl">
-          <img src="/assets/kova-logo.webp?v=2026082303" alt="KOVA Accesorios" className="size-10 object-contain" />
+          <img src="/assets/kova-logo.webp?v=2026082303" alt="KOVA Accesorios" className="size-10 shrink-0 rounded-full object-cover" />
           <div><p className="font-display text-sm font-extrabold tracking-[0.22em]">KOVA</p><p className="text-[6px] font-bold uppercase tracking-[0.38em] text-white/45">Accesorios</p></div>
         </a>
         <nav className="pointer-events-auto hidden items-center rounded-full border border-white/15 bg-black/70 p-1.5 shadow-xl shadow-black/15 backdrop-blur-xl md:flex">
-          <a href="#coleccion" onClick={(event) => { event.preventDefault(); scrollToProducts() }} className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}>Colección</a>
-          {outfitProducts.length > 0 && <a href="#outfits" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}>Outfits</a>}
-          {(catalog?.deliveries.length ?? 0) > 0 && <a href="#entregas" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}>Entregas</a>}
-          <a href="#preguntas" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}>Preguntas</a>
-          <a href="#coleccion" onClick={(event) => { event.preventDefault(); scrollToProducts() }} className={`${DESKTOP_NAV_ITEM_CLASS} bg-white text-black hover:bg-stone-200`}>Comprar</a>
+          <a href="#coleccion" onClick={(event) => { event.preventDefault(); scrollToProducts() }} className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}><span className={DESKTOP_NAV_LABEL_CLASS}>Colección</span></a>
+          {outfitProducts.length > 0 && <a href="#outfits" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}><span className={DESKTOP_NAV_LABEL_CLASS}>Outfits</span></a>}
+          {(catalog?.deliveries.length ?? 0) > 0 && <a href="#entregas" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}><span className={DESKTOP_NAV_LABEL_CLASS}>Entregas</span></a>}
+          <a href="#preguntas" className={`${DESKTOP_NAV_ITEM_CLASS} hover:bg-white/10`}><span className={DESKTOP_NAV_LABEL_CLASS}>Preguntas</span></a>
+          <a href="#coleccion" onClick={(event) => { event.preventDefault(); scrollToProducts() }} className={`${DESKTOP_NAV_ITEM_CLASS} bg-white text-black hover:bg-stone-200`}><span className={DESKTOP_NAV_LABEL_CLASS}>Comprar</span></a>
         </nav>
         <button type="button" className="pointer-events-auto grid size-12 place-items-center rounded-full border border-white/15 bg-black/70 shadow-xl backdrop-blur-xl md:hidden" onClick={() => setMenuOpen((value) => !value)} aria-label="Abrir menú" aria-expanded={menuOpen}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
         {menuOpen && <nav className="pointer-events-auto absolute inset-x-0 top-16 rounded-3xl border border-white/15 bg-black/90 p-3 text-sm font-bold shadow-2xl backdrop-blur-xl md:hidden">
