@@ -30,7 +30,7 @@ Cloudflare detectará Node 22 mediante `.nvmrc`. Si faltan las variables de Supa
 
 El enlace que se comparte con clientes es `https://TU-DOMINIO/catalogo`. No requiere iniciar sesión. Antes de promocionarlo, configura el número de WhatsApp y publica al menos un producto activo desde KOVA Control.
 
-Las imágenes del catálogo se incluyen en el despliegue desde `public/productos/catalogo/`. Las carpetas normales contienen producto y las carpetas `Outfit-<Producto>` contienen combinaciones. Cuando cambies una foto, realiza un nuevo commit y despliegue. El build genera rutas versionadas y Cloudflare aplica caché prolongada a los formatos de imagen.
+Las imágenes fuente del catálogo viven en `public/productos/catalogo/`. Las carpetas normales contienen producto y las carpetas `Outfit-<Producto>` contienen combinaciones. Cuando cambies una foto, realiza un nuevo commit y despliegue. El prebuild las convierte a WebP con rutas versionadas; el postbuild excluye todos los PNG/JPG de `dist`, y Cloudflare aplica caché prolongada a las versiones optimizadas.
 
 Las fotos de entregas no requieren un nuevo despliegue: se publican desde **Entregas** en KOVA Control y se almacenan en Supabase. Aplica antes la migración `202608220007_delivery_showcase.sql`.
 

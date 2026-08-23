@@ -8,3 +8,6 @@ coverage
 .DS_Store
 *.log
 .wrangler
+/public/assets/*.webp
+/public/productos/manifest.json
+/public/productos/optimized/

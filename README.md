@@ -65,7 +65,7 @@ public/productos/catalogo/Outfit-Kova Alba/1.png
 3. Agrega imágenes `1:1` numeradas desde `1` en adelante.
 4. Sube los archivos al repositorio y vuelve a desplegar.
 
-`npm run dev` y `npm run build` generan automáticamente `public/productos/manifest.json`. Como Cloudflare Pages es un despliegue estático, las fotos no pueden escribirse en esa carpeta desde el navegador publicado.
+`npm run dev` y `npm run build` convierten automáticamente estas fuentes a WebP, generan `public/productos/manifest.json` y excluyen los PNG/JPG del paquete final. Los originales permanecen en el repositorio para poder reemplazarlos o regenerarlos, pero Cloudflare Pages recibe únicamente las versiones WebP optimizadas. Como Pages es un despliegue estático, las fotos no pueden escribirse en esa carpeta desde el navegador publicado.
 
 ## Comandos
 

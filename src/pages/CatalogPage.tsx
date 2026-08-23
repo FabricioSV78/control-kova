@@ -71,7 +71,7 @@ export function CatalogPage() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-3 text-white sm:px-6 sm:pt-5">
       <div className="relative mx-auto flex max-w-[1480px] items-center justify-between gap-3">
         <a href="/catalogo" className="pointer-events-auto flex items-center gap-2.5 rounded-full border border-white/15 bg-black/70 p-1.5 pr-4 shadow-xl shadow-black/15 backdrop-blur-xl">
-          <img src="/assets/kova-logo.png?v=2026082302" alt="KOVA Accesorios" className="size-10 object-contain" />
+          <img src="/assets/kova-logo.webp?v=2026082303" alt="KOVA Accesorios" className="size-10 object-contain" />
           <div><p className="font-display text-sm font-extrabold tracking-[0.22em]">KOVA</p><p className="text-[6px] font-bold uppercase tracking-[0.38em] text-white/45">Accesorios</p></div>
         </a>
         <nav className="pointer-events-auto hidden items-center rounded-full border border-white/15 bg-black/70 p-1.5 shadow-xl shadow-black/15 backdrop-blur-xl md:flex">
@@ -93,7 +93,7 @@ export function CatalogPage() {
 
     <main>
       <section className="relative min-h-[680px] overflow-hidden bg-black sm:min-h-[760px] lg:min-h-[820px]">
-        <img src="/assets/kova-portada.png" alt="Colección de accesorios KOVA" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[52%_center]" />
+        <img src="/assets/kova-portada.webp?v=2026082303" alt="Colección de accesorios KOVA" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[52%_center]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-black/15" />
         <div className="relative mx-auto flex min-h-[680px] max-w-[1480px] items-end px-5 pb-10 sm:min-h-[760px] sm:px-8 sm:pb-14 lg:min-h-[820px] lg:px-12">
           <div className="flex w-full justify-center text-white sm:justify-end">
@@ -151,7 +151,7 @@ export function CatalogPage() {
       </section>
     </main>
 
-    <footer className="bg-[#0d0d0d] px-5 py-10 text-white sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1480px] flex-col gap-6 border-t border-white/10 pt-9 sm:flex-row sm:items-end sm:justify-between"><div className="flex items-center gap-3"><img src="/assets/kova-logo.png?v=2026082302" alt="" className="size-11 object-contain opacity-80" /><div><p className="font-display font-extrabold tracking-[0.22em]">KOVA</p><p className="text-[7px] uppercase tracking-[0.4em] text-white/60">Accesorios</p></div></div><p className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/60">Hecho a mano · Perú</p></div></footer>
+    <footer className="bg-[#0d0d0d] px-5 py-10 text-white sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1480px] flex-col gap-6 border-t border-white/10 pt-9 sm:flex-row sm:items-end sm:justify-between"><div className="flex items-center gap-3"><img src="/assets/kova-logo.webp?v=2026082303" alt="" className="size-11 object-contain opacity-80" /><div><p className="font-display font-extrabold tracking-[0.22em]">KOVA</p><p className="text-[7px] uppercase tracking-[0.4em] text-white/60">Accesorios</p></div></div><p className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/60">Hecho a mano · Perú</p></div></footer>
 
     {selected && <OrderModal product={selected.product} initialGallery={selected.gallery} whatsappNumber={catalog?.whatsappNumber ?? null} onClose={() => setSelected(null)} />}
   </div>
@@ -170,7 +170,7 @@ function ProductCard({ product, onSelect }: { product: Product; onSelect: () => 
   return <article className="group">
     <button type="button" onClick={onSelect} className="block w-full text-left">
       <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-[#deddd8]">
-        {cover ? <img src={cover} alt={product.name} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]" /> : <div className="grid h-full place-items-center bg-gradient-to-br from-[#242424] to-black"><img src="/assets/kova-logo.png?v=2026082302" alt="" className="w-1/3 object-contain opacity-25" /></div>}
+        {cover ? <img src={cover} alt={product.name} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]" /> : <div className="grid h-full place-items-center bg-gradient-to-br from-[#242424] to-black"><img src="/assets/kova-logo.webp?v=2026082303" alt="" className="w-1/3 object-contain opacity-25" /></div>}
         <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em] backdrop-blur">A pedido</span>
         {product.images.length > 1 && <span className="absolute right-4 top-4 rounded-full bg-black/65 px-3 py-1.5 text-[9px] font-bold text-white backdrop-blur">{product.images.length} fotos</span>}
         {product.outfitImages.length > 0 && <span className="absolute bottom-4 left-4 rounded-full bg-black/65 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur sm:bottom-20">Outfits</span>}
@@ -227,7 +227,7 @@ function OrderModal({ product, initialGallery, whatsappNumber, onClose }: { prod
           <div className="bg-[#e9e8e4] p-3 sm:p-5">
             {product.outfitImages.length > 0 && <div className="mb-3 flex rounded-full bg-black/5 p-1"><button type="button" onClick={() => changeGallery('product')} className={`flex-1 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-wider transition ${gallery === 'product' ? 'bg-black text-white' : 'text-black/45'}`}>Producto · {product.images.length}</button><button type="button" onClick={() => changeGallery('outfit')} className={`flex-1 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-wider transition ${gallery === 'outfit' ? 'bg-black text-white' : 'text-black/45'}`}>Outfits · {product.outfitImages.length}</button></div>}
             <div className="relative aspect-square overflow-hidden rounded-[1.25rem] bg-black">
-              {images[imageIndex] ? <img src={images[imageIndex].url} alt={product.name} className="h-full w-full object-cover" /> : <div className="grid h-full place-items-center"><img src="/assets/kova-logo.png?v=2026082302" alt="" className="w-1/3 object-contain opacity-30" /></div>}
+              {images[imageIndex] ? <img src={images[imageIndex].url} alt={product.name} className="h-full w-full object-cover" /> : <div className="grid h-full place-items-center"><img src="/assets/kova-logo.webp?v=2026082303" alt="" className="w-1/3 object-contain opacity-30" /></div>}
               {images.length > 1 && <><GalleryButton direction="left" onClick={() => setImageIndex((value) => (value - 1 + images.length) % images.length)} /><GalleryButton direction="right" onClick={() => setImageIndex((value) => (value + 1) % images.length)} /></>}
             </div>
             {images.length > 1 && <div className="mt-3 grid grid-cols-4 gap-2">{images.map((image, index) => <button type="button" key={image.id} onClick={() => setImageIndex(index)} className={`aspect-square overflow-hidden rounded-xl border-2 transition ${index === imageIndex ? 'border-black' : 'border-transparent opacity-60 hover:opacity-100'}`}><img src={image.url} alt="" className="h-full w-full object-cover" /></button>)}</div>}

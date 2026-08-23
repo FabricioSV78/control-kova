@@ -19,7 +19,7 @@ export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
       <aside className={cn('fixed inset-y-0 left-0 z-50 flex w-[274px] flex-col border-r border-stone-800 bg-stone-950 text-white transition-transform duration-200 lg:translate-x-0', mobileOpen ? 'translate-x-0' : '-translate-x-full')}>
         <div className="flex h-20 items-center justify-between border-b border-stone-800 px-6">
           <NavLink to="/" className="flex items-center gap-3" onClick={onClose}>
-            <img src="/assets/kova-logo.png?v=2026082302" alt="KOVA" className="size-10 object-contain" />
+            <img src="/assets/kova-logo.webp?v=2026082303" alt="KOVA" className="size-10 object-contain" />
             <span>
               <span className="block font-display text-lg font-extrabold leading-none tracking-tight">KOVA</span>
               <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.24em] text-stone-500">Control</span>

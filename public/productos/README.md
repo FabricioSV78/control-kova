@@ -24,4 +24,4 @@ Reglas:
 - para outfits, agrega el prefijo `Outfit-` al nombre de la carpeta del producto;
 - ejecuta `npm run build` y vuelve a desplegar después de agregar o cambiar fotos.
 
-El manifiesto `manifest.json` se genera automáticamente. No lo edites manualmente.
+Los archivos agregados aquí son las fuentes originales. Antes de iniciar o construir la aplicación, el sistema los convierte automáticamente a WebP optimizado dentro de `public/productos/optimized/` y genera `manifest.json`. No edites manualmente esos archivos generados. El paso posterior al build elimina de `dist` los PNG y JPG originales para que Cloudflare Pages publique únicamente los WebP.
