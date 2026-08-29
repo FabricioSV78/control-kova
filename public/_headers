@@ -7,6 +7,10 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Robots-Tag: noindex, nofollow
 
+/catalogo
+  ! X-Robots-Tag
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 

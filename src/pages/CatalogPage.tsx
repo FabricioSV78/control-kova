@@ -38,7 +38,7 @@ export function CatalogPage() {
 
   useEffect(() => {
     const previousTitle = document.title
-    document.title = 'KOVA Accesorios | Catálogo'
+    document.title = 'Catálogo KOVA | Accesorios hechos a tu medida'
     let active = true
     void loadPublicCatalog()
       .then((data) => { if (active) setCatalog(data) })

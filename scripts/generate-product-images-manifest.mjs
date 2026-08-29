@@ -81,6 +81,7 @@ await Promise.all([
     height: 1920,
     quality: 84,
   }),
+  optimizeSocialAsset('kova-catalogo-social.png', 'kova-catalogo-social.webp'),
 ])
 
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')
@@ -103,6 +104,22 @@ async function optimizeAsset(sourceName, outputName, options) {
       withoutEnlargement: true,
     })
     .webp({ quality: options.quality, effort: 5, smartSubsample: true })
+    .toFile(outputPath)
+}
+
+async function optimizeSocialAsset(sourceName, outputName) {
+  const sourcePath = path.join(publicDirectory, 'assets', sourceName)
+  const outputPath = path.join(publicDirectory, 'assets', outputName)
+
+  await sharp(sourcePath)
+    .rotate()
+    .resize({
+      width: 1200,
+      height: 630,
+      fit: 'contain',
+      background: { r: 5, g: 5, b: 5, alpha: 1 },
+    })
+    .webp({ quality: 88, effort: 5, smartSubsample: true })
     .toFile(outputPath)
 }
 
