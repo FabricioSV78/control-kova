@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useWorkspace } from '../../hooks/useWorkspace'
 import { Button } from '../ui/Button'
+import { NotificationControl } from '../features/notifications/NotificationControl'
 import { Sidebar } from './Sidebar'
 
 export function AppShell() {
@@ -21,6 +22,9 @@ export function AppShell() {
           <span className="size-10" />
         </header>
         <main className="mx-auto w-full max-w-[1540px] px-4 py-6 sm:px-6 sm:py-8 xl:px-10 xl:py-10">
+          <div className="mb-5 flex justify-end">
+            <NotificationControl />
+          </div>
           <Outlet />
         </main>
       </div>

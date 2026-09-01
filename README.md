@@ -19,6 +19,12 @@ Sin variables válidas de Supabase, la aplicación ofrece un modo demo local. In
 
 Los cambios demo permanecen en el navegador y pueden restablecerse desde Configuración.
 
+## PWA y notificaciones de prueba
+
+KOVA Control incluye un manifiesto instalable y un service worker. Dentro del panel aparece el botón **Activar notificaciones**. Al conceder el permiso se muestra una primera notificación y, mientras la aplicación permanezca abierta, se repite cada dos minutos con el texto `hola, compraron una kova`. El botón permite detener la prueba en cualquier momento.
+
+Esta repetición es una prueba local del permiso y de la presentación de notificaciones del teléfono. Para recibir avisos con la aplicación totalmente cerrada se necesita una suscripción Web Push guardada en el servidor y un Worker programado que envíe los mensajes; Cloudflare Pages estático no ejecuta temporizadores en segundo plano.
+
 ## Conectar Supabase
 
 1. Crea un proyecto en Supabase.

@@ -71,6 +71,16 @@ await Promise.all([
     height: 1250,
     quality: 88,
   }),
+  optimizeAsset('kova-logo.png', 'kova-pwa-192.webp', {
+    width: 192,
+    height: 192,
+    quality: 88,
+  }),
+  optimizeAsset('kova-logo.png', 'kova-pwa-512.webp', {
+    width: 512,
+    height: 512,
+    quality: 88,
+  }),
   optimizeAsset('kova-portada.png', 'kova-portada.webp', {
     width: 2200,
     height: 1200,
